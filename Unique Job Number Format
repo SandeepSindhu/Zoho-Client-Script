@@ -1,0 +1,72 @@
+/*
+Information
+Page Details
+CategoryModule
+PageCreate Page
+ModuleJobs
+LayoutStandard
+Event Details
+Event TypePage Event
+EventonChange*/
+
+var job_number = ZDK.Page.getField("Job_Number");
+var lot_number = ZDK.Page.getField("Lot_Number").getValue();
+log("Lot Number ^^^", lot_number);
+var job_State = ZDK.Page.getField("State").getValue();
+log("job_State ^^^", job_State);
+var job_Suburb = ZDK.Page.getField("Suburb").getValue();
+log("job_Suburb ^^^", job_Suburb);
+var builder = ZDK.Page.getField("Builder").getValue();
+log("builder ^^^", builder);
+var version = ZDK.Page.getField("Version").getValue();
+log("version ^^^", version);
+
+log(jobs_name, lot_number, street_number, job_address, project, location, job_number);
+
+var state ="";
+var suburb="";
+var lotNumber="";
+var builderName2="";
+var version2 = "";
+
+
+if (job_State != null) {
+    var state = job_State.substring(0, 3);
+    log(state);
+} 
+
+if (job_Suburb != null)
+{
+    var suburb = "-"+job_Suburb.substring(0, 3);
+    log(suburb);
+} 
+
+if (lot_number != null)
+{
+    var len = lot_number.length;
+    log(len);
+    var temp = lot_number;
+    for (var i = 5 - len; i > 0; i--)
+    {
+        
+        temp = "0" + temp;
+    }
+    log(temp);
+    var lotNumber = "-"+temp;
+}
+
+if (builder != null)
+{
+    var builderName = builder.name;
+    var builderName2 = "-"+builderName.substring(0, 3);
+}
+
+
+if (version != null)
+{
+
+    var version2 = "-"+version.substring(0, 1);
+}
+
+
+ job_number.setValue(state + suburb + lotNumber + builderName2 + version2);
